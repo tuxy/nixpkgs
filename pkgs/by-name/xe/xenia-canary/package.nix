@@ -36,6 +36,7 @@ llvmPackages_20.stdenv.mkDerivation {
     pkg-config
     ninja
     cmake
+    clang-format
     wrapGAppsHook3
     copyDesktopItems
     autoPatchelfHook
@@ -54,6 +55,7 @@ llvmPackages_20.stdenv.mkDerivation {
 
   buildPhase = ''
     runHook preBuild
+    python3 xenia-build lint --all
     python3 xenia-build setup
     python3 xenia-build build --config=release
     runHook postBuild
